@@ -26,6 +26,14 @@ function HomeContainer () {
             <Paper className={classes.paper}>
                 <Typography variant="body1">This is your custom menu to help you access some of your sub features!</Typography>
             </Paper>
+            <Paper className={classes.paper}>
+                <Typography variant="body2">REMINDER!<br/> All features in this menu are Temporary. For example,<br/>
+                when you put your car back into the garage the headlights will be back to the normal xenon color</Typography>
+            </Paper>
+            <Paper className={classes.paper}>
+                <Typography variant="body2">Weapon tints are also temporary and are removed<br/>when placed in a trunk
+                or when you logout</Typography>
+            </Paper>
             <Paper className={classes.bottomPaper}>
                 <Typography variant="body1">PMA thanks you for your continued support and are actively working to bring you new features!</Typography>
             </Paper>

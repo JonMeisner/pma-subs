@@ -1,5 +1,7 @@
 import React from 'react';
 import {makeStyles, ButtonGroup, Button, Paper, Typography} from '@material-ui/core';
+import { useSelector, useDispatch} from 'react-redux';
+import { Link, Router } from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,11 +24,16 @@ const useStyles = makeStyles((theme) => ({
         display: 'auto',
         marginTop: '2%',
     },
+    hide: {
+        display: 'none',
+    },
+    show: {
+        display: 'auto',
+    },
     buttonGroup: {
         justifyContent: 'center',
         display: 'flex',
     },
-
     paper: {
         textAlign: 'center',
         margin: '5px',
@@ -41,6 +48,11 @@ const useStyles = makeStyles((theme) => ({
         minHeight: '40px',
         marginTop: '5px',
         backgroundColor: '#0BA9D9',
+    },
+    paperOwner: {
+        textAlign: 'center',
+        margin: '5px',
+        marginTop: '50%',
     },
 
     // This is awful
@@ -207,6 +219,8 @@ const useStyles = makeStyles((theme) => ({
 
 function XenonContainer (props) {
     const classes = useStyles();
+    const ownerState = useSelector((state) => state.SubMenu.isOwner);
+    const vehicleState = useSelector((state) => state.SubMenu.inVehicle)
     // White	222	222	255
     // Blue	2	21	255
     // Electric Blue	3	83	255
@@ -222,38 +236,54 @@ function XenonContainer (props) {
     // Blacklight	15	3	255
     return (
         <div className={classes.main}>
-            <Paper className={classes.paper}>
-                <Typography>Select a color for a preview</Typography>
-            </Paper>
-            <ButtonGroup className={classes.buttonGroup}>
-                <Button onClick={() => {props.sendNewColor(222,222,255)}} className={classes.buttonWhite}>White</Button>
-                <Button onClick={() => {props.sendNewColor(2,21,255)}} className={classes.buttonBlue}>Blue</Button>
-                <Button onClick={() => {props.sendNewColor(3,83,255)}} className={classes.buttonElectricBlue}>Electric<br/>Blue</Button>        
-            </ButtonGroup>
-            <ButtonGroup className={classes.buttonGroup}>
-                <Button onClick={() => {props.sendNewColor(0,255,140)}} className={classes.buttonMintGreen}>Mint<br/>Green</Button>
-                <Button onClick={() => {props.sendNewColor(94,255,1)}} className={classes.buttonLimeGreen}>Lime<br/>Green</Button>
-                <Button onClick={() => {props.sendNewColor(255,255,0)}} className={classes.buttonYellow}>Yellow</Button>
-            </ButtonGroup>
-            <ButtonGroup className={classes.buttonGroup}>
-                <Button onClick={() => {props.sendNewColor(255,150,0)}} className={classes.buttonGoldenShower}>Golden<br/>Shower</Button>
-                <Button onClick={() => {props.sendNewColor(255,62,0)}} className={classes.buttonOrange}>Orange</Button>
-                <Button onClick={() => {props.sendNewColor(255,1,1)}} className={classes.buttonRed}>Red</Button>
-            </ButtonGroup>
-            <ButtonGroup className={classes.buttonGroup}>
-                <Button onClick={() => {props.sendNewColor(255,50,100)}} className={classes.buttonPonyPink}>Pony<br/>Pink</Button>
-                <Button onClick={() => {props.sendNewColor(255,5,190)}} className={classes.buttonHotPink}>Hot<br/>Pink</Button>
-                <Button onClick={() => {props.sendNewColor(35,1,255)}} className={classes.buttonPurple}>Purple</Button>
-            </ButtonGroup>
-            <ButtonGroup className={classes.buttonGroup}>
-                <Button onClick={() => {props.sendNewColor(15,3,255)}} className={classes.buttonBlackLight}><strong>Black<br/>Light</strong></Button>
-            </ButtonGroup>
-            <Paper className={classes.bottomPaper}>
-                <Typography>Click Save to Keep Your Light Color</Typography>
-            </Paper>
-            <ButtonGroup className={classes.buttonGroup}>
-                <Button variant="contained" onClick={() => {props.closeApplication()}} className={classes.bottomButton}>SAVE</Button>
-            </ButtonGroup>
+            <div className={ownerState === true ? classes.show : classes.hide}>
+                <Paper className={classes.paper}>
+                    <Typography>Select a color for a preview</Typography>
+                </Paper>
+                <ButtonGroup className={classes.buttonGroup}>
+                    <Button onClick={() => {props.sendNewColor(0)}} className={classes.buttonWhite}>White</Button>
+                    <Button onClick={() => {props.sendNewColor(1)}} className={classes.buttonBlue}>Blue</Button>
+                    <Button onClick={() => {props.sendNewColor(2)}} className={classes.buttonElectricBlue}>Electric<br/>Blue</Button>        
+                </ButtonGroup>
+                <ButtonGroup className={classes.buttonGroup}>
+                    <Button onClick={() => {props.sendNewColor(3)}} className={classes.buttonMintGreen}>Mint<br/>Green</Button>
+                    <Button onClick={() => {props.sendNewColor(4)}} className={classes.buttonLimeGreen}>Lime<br/>Green</Button>
+                    <Button onClick={() => {props.sendNewColor(5)}} className={classes.buttonYellow}>Yellow</Button>
+                </ButtonGroup>
+                <ButtonGroup className={classes.buttonGroup}>
+                    <Button onClick={() => {props.sendNewColor(6)}} className={classes.buttonGoldenShower}>Golden<br/>Shower</Button>
+                    <Button onClick={() => {props.sendNewColor(7)}} className={classes.buttonOrange}>Orange</Button>
+                    <Button onClick={() => {props.sendNewColor(8)}} className={classes.buttonRed}>Red</Button>
+                </ButtonGroup>
+                <ButtonGroup className={classes.buttonGroup}>
+                    <Button onClick={() => {props.sendNewColor(9)}} className={classes.buttonPonyPink}>Pony<br/>Pink</Button>
+                    <Button onClick={() => {props.sendNewColor(10)}} className={classes.buttonHotPink}>Hot<br/>Pink</Button>
+                    <Button onClick={() => {props.sendNewColor(11)}} className={classes.buttonPurple}>Purple</Button>
+                </ButtonGroup>
+                <ButtonGroup className={classes.buttonGroup}>
+                    <Button onClick={() => {props.sendNewColor(12)}} className={classes.buttonBlackLight}><strong>Black<br/>Light</strong></Button>
+                </ButtonGroup>
+                <Paper className={classes.bottomPaper}>
+                    <Typography>Click Save to Keep Your Light Color</Typography>
+                </Paper>
+                <ButtonGroup className={classes.buttonGroup}>
+                    <Button component={Link} to="/" variant="contained" onClick={() => {props.closeApplication()}} className={classes.bottomButton}>SAVE</Button>
+                </ButtonGroup>
+            </div>
+            <div className={ownerState === false && vehicleState === true ? classes.show : classes.hide}>
+                <Paper className={classes.paperOwner}>
+                    <Typography>
+                        You Must Own This Vehicle to Change it's Xenon Color
+                    </Typography>
+                </Paper>
+            </div>
+            <div className={vehicleState === false ? classes.show : classes.hide}>
+                <Paper className={classes.paperOwner}>
+                    <Typography>
+                        Vehicle Required
+                    </Typography>
+                </Paper>
+            </div>
         </div>
     )
 }
