@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         height: 800,
         width: 500,
-        top: '225px',
+        top: '10px',
         borderStyle: 'solid',
         backgroundColor: '#b6b6b6',
         margin: '20px',
@@ -28,9 +28,6 @@ const useStyles = makeStyles((theme) => ({
         display: 'none'
     }
 }));
-
-
-
 
 function App () {
     const classes = useStyles();
@@ -41,7 +38,7 @@ function App () {
         //dispatch(SubActions.hideSubMenu());
         dispatch(SubActions.clearData());
         apis.closeSubMenu();    
-    }
+    } 
 
     const sendNewColor = (colorCode) => {
         apis.changeColor(colorCode)

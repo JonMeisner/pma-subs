@@ -1,8 +1,8 @@
 import React from 'react';
 import {makeStyles, ButtonGroup, Button, Paper, Typography, Card, CardActionArea, CardContent, CardMedia} from '@material-ui/core';
-import { useSelector, useDispatch} from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link, Router } from "react-router-dom";
-import IMAGE from '../assets/armyTint.png';
+import TintButton from '../components/TintButton';
 
 const useStyles = makeStyles((theme) => ({
     main: {
@@ -35,106 +35,6 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '5px',
         backgroundColor: '#0BA9D9',
     },
-    buttonBlack: {
-        backgroundColor: '#000000',
-        "&:hover": {
-            backgroundColor: "#000000"
-        },
-        // maxWidth: '30px',
-        // maxHeight: '30px',
-        minWidth: '100px',
-        minHeight: '100px',
-        margin: '10px',
-        fontWeight: 'bold',
-        color: 'white',
-    },
-    buttonGreen: {
-        backgroundColor: '#45934C',
-        "&:hover": {
-            backgroundColor: "#45934C"
-        },
-        // maxWidth: '30px',
-        // maxHeight: '30px',
-        minWidth: '100px',
-        minHeight: '100px',
-        margin: '10px',
-        fontWeight: 'bold',
-        color: 'white',
-    },
-    buttonGold: {
-        backgroundColor: '#FFD700',
-        "&:hover": {
-            backgroundColor: "#FFD700"
-        },
-        // maxWidth: '30px',
-        // maxHeight: '30px',
-        minWidth: '100px',
-        minHeight: '100px',
-        margin: '10px',
-        fontWeight: 'bold',
-    },
-    buttonPink: {
-        backgroundColor: '#FF69B4',
-        "&:hover": {
-            backgroundColor: "#FF69B4"
-        },
-        // maxWidth: '30px',
-        // maxHeight: '30px',
-        minWidth: '100px',
-        minHeight: '100px',
-        margin: '10px',
-        fontWeight: 'bold',
-    },
-    buttonArmy: {
-        backgroundColor: '#6C552B',
-        "&:hover": {
-            backgroundColor: "#6C552B"
-        },
-        maxWidth: '100px',
-        maxHeight: '100px',
-        minWidth: '100px',
-        minHeight: '100px',
-        margin: '10px',
-        fontWeight: 'bold',
-        color: "white",
-    },
-    buttonLSPD: {
-        backgroundColor: '#1F43AD',
-        "&:hover": {
-            backgroundColor: "#1F43AD"
-        },
-        // maxWidth: '100px',
-        // maxHeight: '100px',
-        minWidth: '100px',
-        minHeight: '100px',
-        margin: '10px',
-        fontWeight: 'bold',
-        color: "white",
-    },
-    buttonOrange: {
-        backgroundColor: '#EF9408',
-        "&:hover": {
-            backgroundColor: "#EF9408"
-        },
-        // maxWidth: '30px',
-        // maxHeight: '30px',
-        minWidth: '100px',
-        minHeight: '100px',
-        margin: '10px',
-        fontWeight: 'bold',
-    },
-    buttonPlatinum: {
-        backgroundColor: '#dedeff',
-        "&:hover": {
-            backgroundColor: "#dedeff"
-        },
-        // maxWidth: '30px',
-        // maxHeight: '30px',
-        minWidth: '100px',
-        minHeight: '100px',
-        margin: '10px',
-        fontWeight: 'bold',
-    },
     paperOwner: {
         textAlign: 'center',
         margin: '5px',
@@ -156,18 +56,66 @@ function TintContainer (props) {
                     <Typography>Works Best on Non-Mk2 Weapons</Typography>
                 </Paper>
                 <ButtonGroup className={classes.buttonGroup}>
-                    <Button className={classes.buttonBlack} onClick={() => props.sendNewTint(0)}>Black</Button>
-                    <Button className={classes.buttonGreen} onClick={() => props.sendNewTint(1)}>Green</Button>
-                    <Button className={classes.buttonGold} onClick={() => props.sendNewTint(2)}>Gold</Button>
+                    <TintButton
+                        buttonText={"Black"}
+                        buttonColor={'#000000'}
+                        textColor={"white"}
+                        colorCode={0}
+                        sendNewTint={props.sendNewTint}
+                    />
+                    <TintButton
+                        buttonText={"Green"}
+                        buttonColor={'#45934C'}
+                        textColor={"white"}
+                        colorCode={1}
+                        sendNewTint={props.sendNewTint}
+                    />
+                    <TintButton
+                        buttonText={"Gold"}
+                        buttonColor={'#FFD700'}
+                        textColor={"black"}
+                        colorCode={2}
+                        sendNewTint={props.sendNewTint}
+                    />
                 </ButtonGroup>
                 <ButtonGroup className={classes.buttonGroup}>
-                    <Button className={classes.buttonPink} onClick={() => props.sendNewTint(3)}>Pink</Button>
-                    <Button className={classes.buttonArmy} onClick={() => props.sendNewTint(4)}>Army</Button>
-                    <Button className={classes.buttonLSPD} onClick={() => props.sendNewTint(5)}>LSPD</Button>
+                    <TintButton
+                        buttonText={"Pink"}
+                        buttonColor={'#FF69B4'}
+                        textColor={"black"}
+                        colorCode={3}
+                        sendNewTint={props.sendNewTint}
+                    />
+                    <TintButton
+                        buttonText={"Army"}
+                        buttonColor={'#6C552B'}
+                        textColor={"white"}
+                        colorCode={4}
+                        sendNewTint={props.sendNewTint}
+                    />
+                    <TintButton
+                        buttonText={"LSPD"}
+                        buttonColor={'#1F43AD'}
+                        textColor={"white"}
+                        colorCode={5}
+                        sendNewTint={props.sendNewTint}
+                    />
                 </ButtonGroup>
                 <ButtonGroup className={classes.buttonGroup}>
-                    <Button className={classes.buttonOrange} onClick={() => props.sendNewTint(6)}>Orange</Button>
-                    <Button className={classes.buttonPlatinum} onClick={() => props.sendNewTint(7)}>Platinum</Button>
+                    <TintButton
+                        buttonText={"Orange"}
+                        buttonColor={'#EF9408'}
+                        textColor={"black"}
+                        colorCode={6}
+                        sendNewTint={props.sendNewTint}
+                    />
+                    <TintButton
+                        buttonText={"Platinum"}
+                        buttonColor={'#dedeff'}
+                        textColor={"black"}
+                        colorCode={7}
+                        sendNewTint={props.sendNewTint}
+                    />
                 </ButtonGroup>
                 <Paper className={classes.bottomPaper}>
                     <Typography>Click Save to Keep Your Weapon Tint</Typography>

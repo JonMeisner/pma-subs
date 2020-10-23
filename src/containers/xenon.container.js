@@ -2,6 +2,7 @@ import React from 'react';
 import {makeStyles, ButtonGroup, Button, Paper, Typography} from '@material-ui/core';
 import { useSelector, useDispatch} from 'react-redux';
 import { Link, Router } from "react-router-dom";
+import XenonButton from '../components/XenonButton';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -54,186 +55,12 @@ const useStyles = makeStyles((theme) => ({
         margin: '5px',
         marginTop: '50%',
     },
-
-    // This is awful
-    buttonWhite: {
-        backgroundColor: '#dedeff',
-        "&:hover": {
-            backgroundColor: "#dedeff"
-        },
-        // maxWidth: '30px',
-        // maxHeight: '30px',
-        minWidth: '100px',
-        minHeight: '100px',
-        margin: '10px',
-        fontWeight: 'bold',
-    },
-    buttonBlue: {
-        backgroundColor: '#0217ff',
-        "&:hover": {
-            backgroundColor: "#0217ff"
-        },
-        // maxWidth: '30px',
-        // maxHeight: '30px',
-        minWidth: '100px',
-        minHeight: '100px',
-        margin: '10px',
-        fontWeight: 'bold',
-        color: 'white',
-    },
-    buttonElectricBlue: {
-        backgroundColor: '#0353ff',
-        "&:hover": {
-            backgroundColor: "#0353ff"
-        },
-        // maxWidth: '30px',
-        // maxHeight: '30px',
-        minWidth: '100px',
-        minHeight: '100px',
-        margin: '10px',
-        display: 'auto',
-        fontWeight: 'bold',
-    },
-    buttonMintGreen: {
-        backgroundColor: '#00ff8c',
-        "&:hover": {
-            backgroundColor: "#00ff8c"
-        },
-        // maxWidth: '30px',
-        // maxHeight: '30px',
-        minWidth: '100px',
-        minHeight: '100px',
-        margin: '10px',
-        fontWeight: 'bold',
-    },
-    buttonLimeGreen: {
-        backgroundColor: '#5eff01',
-        "&:hover": {
-            backgroundColor: "#5eff01"
-        },
-        // maxWidth: '30px',
-        // maxHeight: '30px',
-        minWidth: '100px',
-        minHeight: '100px',
-        margin: '10px',
-        fontWeight: 'bold',
-    },
-    buttonYellow: {
-        backgroundColor: '#ffff00',
-        "&:hover": {
-            backgroundColor: "#ffff00"
-        },
-        // maxWidth: '30px',
-        // maxHeight: '30px',
-        minWidth: '100px',
-        minHeight: '100px',
-        margin: '10px',
-        fontWeight: 'bold',
-    },
-    buttonGoldenShower: {
-        backgroundColor: '#ff9600',
-        "&:hover": {
-            backgroundColor: "#ff9600"
-        },
-        // maxWidth: '30px',
-        // maxHeight: '30px',
-        minWidth: '100px',
-        minHeight: '100px',
-        margin: '10px',
-        fontWeight: 'bold',
-    },
-    buttonOrange: {
-        backgroundColor: '#ff4000',
-        "&:hover": {
-            backgroundColor: "#ff4000"
-        },
-        // maxWidth: '30px',
-        // maxHeight: '30px',
-        minWidth: '100px',
-        minHeight: '100px',
-        margin: '10px',
-        fontWeight: 'bold',
-    },
-    buttonRed: {
-        backgroundColor: '#ff0101',
-        "&:hover": {
-            backgroundColor: "#ff0101"
-        },
-        // maxWidth: '30px',
-        // maxHeight: '30px',
-        minWidth: '100px',
-        minHeight: '100px',
-        margin: '10px',
-        fontWeight: 'bold',
-    },
-    buttonPonyPink: {
-        backgroundColor: '#ff3264',
-        "&:hover": {
-            backgroundColor: "#ff3264"
-        },
-        // maxWidth: '30px',
-        // maxHeight: '30px',
-        minWidth: '100px',
-        minHeight: '100px',
-        margin: '10px',
-        fontWeight: 'bold',
-    },
-    buttonHotPink: {
-        backgroundColor: '#ff05be',
-        "&:hover": {
-            backgroundColor: "#ff05be"
-        },
-        // maxWidth: '30px',
-        // maxHeight: '30px',
-        minWidth: '100px',
-        minHeight: '100px',
-        margin: '10px',
-        fontWeight: 'bold',
-    },
-    buttonPurple: {
-        backgroundColor: '#2301ff',
-        "&:hover": {
-            backgroundColor: "#2301ff"
-        },
-        // maxWidth: '30px',
-        // maxHeight: '30px',
-        minWidth: '100px',
-        minHeight: '100px',
-        margin: '10px',
-        color: 'white',
-        fontWeight: 'bold',
-    },
-    buttonBlackLight: {
-        backgroundColor: '#0f03ff',
-        "&:hover": {
-            backgroundColor: "#0f03ff"
-        },
-        // maxWidth: '30px',
-        // maxHeight: '30px',
-        minWidth: '100px',
-        minHeight: '100px',
-        margin: '10px',
-        color: "white",
-    },
 }))
 
 function XenonContainer (props) {
     const classes = useStyles();
     const ownerState = useSelector((state) => state.SubMenu.isOwner);
     const vehicleState = useSelector((state) => state.SubMenu.inVehicle)
-    // White	222	222	255
-    // Blue	2	21	255
-    // Electric Blue	3	83	255
-    // Mint Green	0	255	140
-    // Lime Green	94	255	1
-    // Yellow	255	255	0
-    // Golden Shower	255	150	0
-    // Orange	255	62	0
-    // Red	255	1	1
-    // Pony Pink	255	50	100
-    // Hot Pink	255	5	190
-    // Purple	35	1	255
-    // Blacklight	15	3	255
     return (
         <div className={classes.main}>
             <div className={ownerState === true ? classes.show : classes.hide}>
@@ -241,27 +68,105 @@ function XenonContainer (props) {
                     <Typography>Select a color for a preview</Typography>
                 </Paper>
                 <ButtonGroup className={classes.buttonGroup}>
-                    <Button onClick={() => {props.sendNewColor(0)}} className={classes.buttonWhite}>White</Button>
-                    <Button onClick={() => {props.sendNewColor(1)}} className={classes.buttonBlue}>Blue</Button>
-                    <Button onClick={() => {props.sendNewColor(2)}} className={classes.buttonElectricBlue}>Electric<br/>Blue</Button>        
+                    <XenonButton
+                        buttonText={"White"}
+                        buttonColor={'#dedeff'}
+                        textColor={"black"}
+                        colorCode={0}
+                        sendNewColor={props.sendNewColor}
+                    />
+                    <XenonButton
+                        buttonText={"Blue"}
+                        buttonColor={'#0217ff'}
+                        textColor={"white"}
+                        colorCode={1}
+                        sendNewColor={props.sendNewColor}
+                    />
+                    <XenonButton
+                        buttonText={"Electric Blue"}
+                        buttonColor={'#0353ff'}
+                        textColor={"black"}
+                        colorCode={2}
+                        sendNewColor={props.sendNewColor}
+                    />
                 </ButtonGroup>
                 <ButtonGroup className={classes.buttonGroup}>
-                    <Button onClick={() => {props.sendNewColor(3)}} className={classes.buttonMintGreen}>Mint<br/>Green</Button>
-                    <Button onClick={() => {props.sendNewColor(4)}} className={classes.buttonLimeGreen}>Lime<br/>Green</Button>
-                    <Button onClick={() => {props.sendNewColor(5)}} className={classes.buttonYellow}>Yellow</Button>
+                    <XenonButton
+                        buttonText={"Mint Green"}
+                        buttonColor={'#00ff8c'}
+                        textColor={"black"}
+                        colorCode={3}
+                        sendNewColor={props.sendNewColor}
+                    />
+                    <XenonButton
+                        buttonText={"Lime Green"}
+                        buttonColor={'#5eff01'}
+                        textColor={"black"}
+                        colorCode={4}
+                        sendNewColor={props.sendNewColor}
+                    />
+                    <XenonButton
+                        buttonText={"Yellow"}
+                        buttonColor={'#ffff00'}
+                        textColor={"black"}
+                        colorCode={5}
+                        sendNewColor={props.sendNewColor}
+                    />
                 </ButtonGroup>
                 <ButtonGroup className={classes.buttonGroup}>
-                    <Button onClick={() => {props.sendNewColor(6)}} className={classes.buttonGoldenShower}>Golden<br/>Shower</Button>
-                    <Button onClick={() => {props.sendNewColor(7)}} className={classes.buttonOrange}>Orange</Button>
-                    <Button onClick={() => {props.sendNewColor(8)}} className={classes.buttonRed}>Red</Button>
+                    <XenonButton
+                        buttonText={"Golden Shower"}
+                        buttonColor={'#ff9600'}
+                        textColor={"black"}
+                        colorCode={6}
+                        sendNewColor={props.sendNewColor}
+                    />
+                    <XenonButton
+                        buttonText={"Orange"}
+                        buttonColor={'#ff4000'}
+                        textColor={"black"}
+                        colorCode={7}
+                        sendNewColor={props.sendNewColor}
+                    />
+                    <XenonButton
+                        buttonText={"Red"}
+                        buttonColor={'#ff0101'}
+                        textColor={"black"}
+                        colorCode={8}
+                        sendNewColor={props.sendNewColor}
+                    />
                 </ButtonGroup>
                 <ButtonGroup className={classes.buttonGroup}>
-                    <Button onClick={() => {props.sendNewColor(9)}} className={classes.buttonPonyPink}>Pony<br/>Pink</Button>
-                    <Button onClick={() => {props.sendNewColor(10)}} className={classes.buttonHotPink}>Hot<br/>Pink</Button>
-                    <Button onClick={() => {props.sendNewColor(11)}} className={classes.buttonPurple}>Purple</Button>
+                    <XenonButton
+                        buttonText={"Pony Pink"}
+                        buttonColor={'#ff3264'}
+                        textColor={"black"}
+                        colorCode={9}
+                        sendNewColor={props.sendNewColor}
+                    />
+                    <XenonButton
+                        buttonText={"Hot Pink"}
+                        buttonColor={'#ff05be'}
+                        textColor={"black"}
+                        colorCode={10}
+                        sendNewColor={props.sendNewColor}
+                    />                
+                    <XenonButton
+                        buttonText={"Purple"}
+                        buttonColor={'#2301ff'}
+                        textColor={"white"}
+                        colorCode={11}
+                        sendNewColor={props.sendNewColor}
+                    />
                 </ButtonGroup>
                 <ButtonGroup className={classes.buttonGroup}>
-                    <Button onClick={() => {props.sendNewColor(12)}} className={classes.buttonBlackLight}><strong>Black<br/>Light</strong></Button>
+                    <XenonButton
+                        buttonText={"Hot Pink"}
+                        buttonColor={'#0f03ff'}
+                        textColor={"white"}
+                        colorCode={12}
+                        sendNewColor={props.sendNewColor}
+                    />
                 </ButtonGroup>
                 <Paper className={classes.bottomPaper}>
                     <Typography>Click Save to Keep Your Light Color</Typography>
@@ -277,7 +182,7 @@ function XenonContainer (props) {
                     </Typography>
                 </Paper>
             </div>
-            <div className={vehicleState === false ? classes.show : classes.hide}>
+            <div className={vehicleState === false && ownerState == false ? classes.show : classes.hide}>
                 <Paper className={classes.paperOwner}>
                     <Typography>
                         Vehicle Required
