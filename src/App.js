@@ -99,6 +99,7 @@ function App () {
 
     return (
         <div className={SubMenu === true ? classes.main : classes.hide}>
+        {/* <div className={classes.main}> */}
             <Router>
                 <Header closeApplication={closeApplication}/>
                 <Switch>
@@ -114,8 +115,10 @@ function App () {
                     </Route>
                     
                     <Route path="/tints">
-                        <TintContainer sendNewTint={sendNewTint}
-                        closeApplication={closeApplication}/>
+                        <TintContainer
+                            sendNewTint={sendNewTint}
+                            closeApplication={closeApplication}
+                        />
                     </Route>
 
                 </Switch>

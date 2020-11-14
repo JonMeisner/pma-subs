@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import combineReducers from './store/index';
-// import logger from 'redux-logger';
+//import logger from 'redux-logger';
 import App from './App';
 
 const middle = [ thunk ]
